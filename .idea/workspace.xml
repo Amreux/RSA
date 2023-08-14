@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7728d680-f4dd-4f98-b725-95507464bcfd" name="Changes" comment="RSA 99">
+    <list default="true" id="7728d680-f4dd-4f98-b725-95507464bcfd" name="Changes" comment="rsa-&gt;long">
+      <change afterPath="$PROJECT_DIR$/PrimeNumbers/primes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RSACrack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RSA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RSA.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,21 +32,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Amr Elsheshtawy/Desktop/Cyber Security/RSA Assignment/RSA/src/Main.java&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Amr Elsheshtawy/Desktop/Cyber Security/RSA Assignment/RSA/PrimeNumbers",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "C:/Users/Amr Elsheshtawy/Desktop/Cyber Security/RSA Assignment/RSA/src/Main.java",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Amr Elsheshtawy\Desktop\Cyber Security\RSA Assignment\RSA\PrimeNumbers" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="App" type="Application" factoryName="Application" singleton="false" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
@@ -70,7 +79,7 @@
       <updated>1691934888046</updated>
       <workItem from="1691934889005" duration="11584000" />
       <workItem from="1691947763623" duration="23040000" />
-      <workItem from="1692042818208" duration="2342000" />
+      <workItem from="1692042818208" duration="8888000" />
     </task>
     <task id="LOCAL-00001" summary="RSA 99">
       <created>1691971173746</created>
@@ -79,7 +88,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691971173746</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="rsa-&gt;long">
+      <created>1692045646932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692045646932</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="RSA 99" />
-    <option name="LAST_COMMIT_MESSAGE" value="RSA 99" />
+    <MESSAGE value="rsa-&gt;long" />
+    <option name="LAST_COMMIT_MESSAGE" value="rsa-&gt;long" />
   </component>
 </project>

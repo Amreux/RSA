@@ -1,3 +1,5 @@
+import java.math.BigInteger;
+
 public class RSA {
 
     private long prime1;
@@ -6,7 +8,7 @@ public class RSA {
     private long publicKey;
     private long privateKey;
 
-    private boolean isPrime(long n) {
+    public static boolean isPrime(long n) {
         if (n <= 1)
             return false;
         for (int i = 2; i <= n / 2; i++) {
@@ -64,7 +66,7 @@ public class RSA {
     }
 
 
-    private class GCD
+    public static class GCD
     {
         private GCD(){}
        public static long x=0;
@@ -91,13 +93,28 @@ public class RSA {
         }
     }
 
+    public boolean doesProductExceedLong(long num1,long num2)
+    {
+        BigInteger product = BigInteger.valueOf(num1).multiply(BigInteger.valueOf(num2));
+
+        long maxLong = Long.MAX_VALUE;
+        long minLong = Long.MIN_VALUE;
+
+        BigInteger maxLongValue = BigInteger.valueOf(maxLong);
+        BigInteger minLongValue = BigInteger.valueOf(minLong);
+
+        return product.compareTo(maxLongValue) > 0 || product.compareTo(minLongValue) < 0;
+    }
 
     public void generateKeys() {
         modulus = prime1 * prime2;
         long phi = (prime1 - 1) * (prime2 - 1);
         GCD.gcd(publicKey,phi);
-        privateKey = GCD.x;
-
+        if(GCD.y<0)
+        {
+            GCD.y=phi+GCD.y;
+        }
+        privateKey = GCD.y;
     }
 
     public long modularExponentiation(long base, long exponent, long modulus) {
@@ -147,6 +164,11 @@ public class RSA {
 //        System.out.println("Message: " + Message);
 //        System.out.println("Encrypted Message: " + encryptedMessage);
 //        System.out.println("Decrypted Message: " + decryptedMessage);
+        System.out.println(GCD.gcd(13,60));
+        System.out.println("x : "+GCD.x);
+        System.out.println("y : "+GCD.y);
+
+
     }
 }
 

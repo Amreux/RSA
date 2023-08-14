@@ -14,7 +14,8 @@ private Client client;
         PUBLICKEY,
         EMPTY,
         NONNUMERIC,
-        MESSAGEGREATERTHANMODULUS
+        MESSAGEGREATERTHANMODULUS,
+        EXCEEDSLONG
     }
     private   List<String>  errorList = new ArrayList<>();
     private  void addError(ErrorType errorType) {
@@ -23,8 +24,9 @@ private Client client;
             case PRIME2 -> errorList.add("Prime 2 must be a prime number");
             case PUBLICKEY -> errorList.add("Public key must be an integer between 1 and (prime1-1)*(prime2-1)");
             case EMPTY -> errorList.add("Please fill in all fields");
-            case NONNUMERIC -> errorList.add("Please enter a numeric value");
+            case NONNUMERIC -> errorList.add("Please enter appropriate numerical value");
             case MESSAGEGREATERTHANMODULUS -> errorList.add("Message must be less than modulus");
+            case EXCEEDSLONG -> errorList.add("Make sure all the input values and their product do not exceed 2^64-1");
         }
     }
 
@@ -107,7 +109,9 @@ private Client client;
                 errorList.clear();
             }
             else {
+                long startTime=System.nanoTime();
                 rsa.generateKeys();
+                System.out.println("Time Elapsed: "+(System.nanoTime()-startTime)/1000+" s");
                 button.setText("Successfully Generated!");
                 panel4.setVisible(true);
                 label3.setText("Your public key is:  " + rsa.getPublicKey());
@@ -118,7 +122,6 @@ private Client client;
             }
 
         });
-
 
 
         panel.add(button);
@@ -152,7 +155,7 @@ private Client client;
         sendButton.addActionListener(e->{
             if(sendField.getText().equals("") || encryptionKeyField.getText().equals("") || modulusField.getText().equals(""))
                 addError(ErrorType.EMPTY);
-            if(!sendField.getText().matches("[0-9]+") || !encryptionKeyField.getText().matches("[0-9]+") || !modulusField.getText().matches("[0-9]+"))
+            if(!encryptionKeyField.getText().matches("[0-9]+") || !modulusField.getText().matches("[0-9]+"))
                 addError(ErrorType.NONNUMERIC);
             for(int i = 0; i < sendField.getText().length(); i++)
             {
