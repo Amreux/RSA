@@ -1,8 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,13 +84,13 @@ private Client client;
         JButton button = new JButton("Generate Private Key");
         button.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         button.addActionListener(e->{
-            if(!rsa.setPrime1(Integer.parseInt(prime1field.getText()))) {
+            if(!rsa.setPrime1(Long.parseLong(prime1field.getText()))) {
                 addError(ErrorType.PRIME1);
                 System.out.println("prime1 is not prime");
             }
-            if(!rsa.setPrime2(Integer.parseInt(prime2field.getText())))
+            if(!rsa.setPrime2(Long.parseLong(prime2field.getText())))
                 addError(ErrorType.PRIME2);
-            if(!rsa.setPublicKey(Integer.parseInt(eField.getText())))
+            if(!rsa.setPublicKey(Long.parseLong(eField.getText())))
                 addError(ErrorType.PUBLICKEY);
             if(prime1field.getText().equals("") || prime2field.getText().equals("") || eField.getText().equals(""))
                 addError(ErrorType.EMPTY);
@@ -159,7 +156,7 @@ private Client client;
                 addError(ErrorType.NONNUMERIC);
             for(int i = 0; i < sendField.getText().length(); i++)
             {
-                if((int)sendField.getText().charAt(i) > rsa.getModulus())
+                if((long)sendField.getText().charAt(i) > rsa.getModulus())
                 {
                     addError(ErrorType.MESSAGEGREATERTHANMODULUS);
                     break;
@@ -178,7 +175,7 @@ private Client client;
 
                 String message = sendField.getText();
                 String encryptionKey = encryptionKeyField.getText();
-                String encryptedMessage = rsa.Encrypt(message, Integer.parseInt(encryptionKey), Integer.parseInt(modulusField.getText()));
+                String encryptedMessage = rsa.Encrypt(message, Long.parseLong(encryptionKey), Long.parseLong(modulusField.getText()));
                 client.sendMessages(encryptedMessage);
                 sentMessage.setText(encryptedMessage);
             }
@@ -211,7 +208,7 @@ private Client client;
         receiveButton.addActionListener(e->{
             String message = receiveField.getText();
             String decryptionKey = decryptionKeyField.getText();
-            String decryptedMessage = rsa.Decrypt(message,Integer.parseInt(decryptionKey),Integer.parseInt(modulusField2.getText()));
+            String decryptedMessage = rsa.Decrypt(message,Long.parseLong(decryptionKey),Long.parseLong(modulusField2.getText()));
             receivedMessage.setText(decryptedMessage);
         });
 
