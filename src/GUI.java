@@ -72,11 +72,14 @@ private Client client;
 
 
         JPanel panel4 = new JPanel(new GridLayout(3, 1));
-        JLabel label3 = new JLabel("Your public key is:  "+rsa.getPublicKey());
+        JTextField label3 = new JTextField("Your public key is:  "+rsa.getPublicKey());
+        label3.setEditable(false);
         panel4.add(label3);
-        JLabel label4 = new JLabel("Your private key is: "+rsa.getPrivateKey());
+        JTextField label4 = new JTextField("Your private key is: "+rsa.getPrivateKey());
+        label4.setEditable(false);
         panel4.add(label4);
-        JLabel label5 = new JLabel("Your modulus is:     "+rsa.getModulus());
+        JTextField label5 = new JTextField("Your modulus is:     "+rsa.getModulus());
+        label5.setEditable(false);
         panel4.add(label5);
         panel4.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         panel.add(panel4);
@@ -86,12 +89,8 @@ private Client client;
         JButton button = new JButton("Generate Private Key");
         button.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         button.addActionListener(e->{
-            if(!rsa.setPrime1(Long.parseLong(prime1field.getText()))) {
-                addError(ErrorType.PRIME1);
-                System.out.println("prime1 is not prime");
-            }
-            if(!rsa.setPrime2(Long.parseLong(prime2field.getText())))
-                addError(ErrorType.PRIME2);
+            rsa.setPrime1(Long.parseLong(prime1field.getText()));
+            rsa.setPrime2(Long.parseLong(prime2field.getText()));
             if(!rsa.setPublicKey(Long.parseLong(eField.getText())))
                 addError(ErrorType.PUBLICKEY);
             if(prime1field.getText().equals("") || prime2field.getText().equals("") || eField.getText().equals(""))
@@ -111,7 +110,7 @@ private Client client;
             else {
                 long startTime=System.nanoTime();
                 rsa.generateKeys();
-                System.out.println("Time Elapsed: "+(System.nanoTime()-startTime)/1000+" s");
+                System.out.println("Time Elapsed: "+(System.nanoTime()-startTime)/1000+" us");
                 button.setText("Successfully Generated!");
                 panel4.setVisible(true);
                 label3.setText("Your public key is:  " + rsa.getPublicKey());
@@ -159,7 +158,7 @@ private Client client;
                 addError(ErrorType.NONNUMERIC);
             for(int i = 0; i < sendField.getText().length(); i++)
             {
-                if((long)sendField.getText().charAt(i) > rsa.getModulus())
+                if((long)sendField.getText().charAt(i) > Long.parseLong(modulusField.getText()))
                 {
                     addError(ErrorType.MESSAGEGREATERTHANMODULUS);
                     break;

@@ -1,6 +1,4 @@
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RSA {
 
@@ -20,22 +18,14 @@ public class RSA {
         return true;
     }
 
-    public boolean setPrime1(long p1) {
-        if (isPrime(p1)) {
+    public void setPrime1(long p1) {
             prime1 = p1;
-            return true;
-        } else {
-            return false;
-        }
+
     }
 
-    public boolean setPrime2(long p2) {
-        if (isPrime(p2)) {
+    public void setPrime2(long p2) {
+
             prime2 = p2;
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public boolean setPublicKey(long e) {
@@ -95,6 +85,31 @@ public class RSA {
             return res;
         }
     }
+    private static long modularInverse(long A, long B )
+    {
+        long a=A,b=B;
+
+
+        long q=1;
+        long X0=1;
+        long X1=0;
+        int i=0;
+        while((b!=0))
+        {
+            long temp=b;
+            if(i!=0)
+            {
+                long X2=X0-((X1*q));
+                X0=X1; X1=X2;
+            }
+            i++;
+            q=a/b;
+            b=a%b; a=temp;
+        }
+        while (X1<0)
+            X1= X1+B;
+        return X1;
+    }
 
     public boolean doesProductExceedLong(long num1,long num2)
     {
@@ -112,34 +127,33 @@ public class RSA {
     public void generateKeys() {
         modulus = prime1 * prime2;
         long phi = (prime1 - 1) * (prime2 - 1);
-        GCD.gcd(publicKey,phi);
-        if(GCD.y<0)
-        {
-            GCD.y=phi+GCD.y;
-        }
-        privateKey = GCD.y;
+
+        privateKey = modularInverse(publicKey, phi);
     }
 
-    public long modularExponentiation(long base, long exponent, long modulus) {
-        long result = 1;
-        while (exponent > 0) {
-            if (exponent % 2 == 1) {
-                result = (result * base) % modulus;
-            }
-            base = (base * base) % modulus;
-            exponent = exponent / 2;
+
+
+    public static BigInteger mod(BigInteger m, BigInteger exponent, BigInteger n)
+    {
+        BigInteger tempE=exponent;
+        BigInteger finalR=BigInteger.ONE;
+        while(tempE.compareTo(BigInteger.ZERO) > 0)
+        {
+            if(tempE.mod(BigInteger.TWO).equals(BigInteger.ONE)) finalR=(m.multiply(finalR)).mod(n);
+            m=m.multiply(m).mod(n);
+            tempE=tempE.divide(BigInteger.TWO);
         }
-        return result;
+        return finalR;
     }
 
     public String Encrypt(String message, long key, long mod) {
-        String encryptedMessage = "";
+        StringBuilder encryptedMessage = new StringBuilder();
         for (int i = 0; i < message.length(); i++) {
             int c = message.charAt(i);
-            long encryptedC = modularExponentiation(c, key, mod);
-            encryptedMessage +=  encryptedC+"-";
+            long encryptedC = mod(BigInteger.valueOf(c), BigInteger.valueOf(key), BigInteger.valueOf(mod)).longValue();
+            encryptedMessage.append(encryptedC).append("-");
         }
-        return encryptedMessage;
+        return encryptedMessage.toString();
     }
 
     public String Decrypt(String message, long key, long mod) {
@@ -148,7 +162,7 @@ public class RSA {
         String[] encryptedMessage = message.split("-");
         for (String s : encryptedMessage) {
             long c = Long.parseLong(s);
-            long decryptedC = modularExponentiation(c, key, mod);
+            long decryptedC = mod(BigInteger.valueOf(c), BigInteger.valueOf(key), BigInteger.valueOf(mod)).longValue();
             decryptedMessage += (char) decryptedC;
         }
         return decryptedMessage;
@@ -168,8 +182,10 @@ public class RSA {
 //        System.out.println("Message: " + Message);
 //        System.out.println("Encrypted Message: " + encryptedMessage);
 //        System.out.println("Decrypted Message: " + decryptedMessage);
+
         RSA rsa = new RSA();
-        System.out.println(rsa.modularExponentiation(49,157,588983));
+
+        System.out.println(mod(BigInteger.valueOf(53), BigInteger.valueOf(17), BigInteger.valueOf(242599758489492419L)));
 
 
     }

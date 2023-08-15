@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7728d680-f4dd-4f98-b725-95507464bcfd" name="Changes" comment="rsa-&gt;long2">
+    <list default="true" id="7728d680-f4dd-4f98-b725-95507464bcfd" name="Changes" comment="utf-16-&gt;fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RSA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RSA.java" afterDir="false" />
@@ -81,7 +81,7 @@
       <workItem from="1691934889005" duration="11584000" />
       <workItem from="1691947763623" duration="23040000" />
       <workItem from="1692042818208" duration="9894000" />
-      <workItem from="1692119719231" duration="2623000" />
+      <workItem from="1692119719231" duration="8949000" />
     </task>
     <task id="LOCAL-00001" summary="RSA 99">
       <created>1691971173746</created>
@@ -104,7 +104,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692052243249</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="utf-16-&gt;fixed">
+      <created>1692122478815</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692122478815</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +132,7 @@
     <MESSAGE value="RSA 99" />
     <MESSAGE value="rsa-&gt;long" />
     <MESSAGE value="rsa-&gt;long2" />
-    <option name="LAST_COMMIT_MESSAGE" value="rsa-&gt;long2" />
+    <MESSAGE value="utf-16-&gt;fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="utf-16-&gt;fixed" />
   </component>
 </project>
