@@ -22,7 +22,7 @@ private Client client;
         switch (errorType) {
             case PRIME1 -> errorList.add("Prime 1 must be a prime number");
             case PRIME2 -> errorList.add("Prime 2 must be a prime number");
-            case PUBLICKEY -> errorList.add("Public key must be an integer between 1 and (prime1-1)*(prime2-1)");
+            case PUBLICKEY -> errorList.add("Public key must be an integer between 1 and (prime1-1)*(prime2-1) and Coprime with (prime1-1)*(prime2-1)");
             case EMPTY -> errorList.add("Please fill in all fields");
             case NONNUMERIC -> errorList.add("Please enter appropriate numerical value");
             case MESSAGEGREATERTHANMODULUS -> errorList.add("Message must be less than modulus");
@@ -228,7 +228,7 @@ private Client client;
         panel.add(receivePanel);
 
         frame.add(panel, BorderLayout.CENTER);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);

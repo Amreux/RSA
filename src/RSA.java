@@ -1,4 +1,6 @@
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RSA {
 
@@ -37,7 +39,8 @@ public class RSA {
     }
 
     public boolean setPublicKey(long e) {
-        if (e >= 1 && e < (prime1 - 1) * (prime2 - 1)) {
+        long phi= (prime1 - 1) * (prime2 - 1);
+        if (e >= 1 && e<phi  &&GCD.gcd(phi,e)==1) {
             publicKey = e;
             return true;
         } else {
@@ -134,7 +137,7 @@ public class RSA {
         for (int i = 0; i < message.length(); i++) {
             int c = message.charAt(i);
             long encryptedC = modularExponentiation(c, key, mod);
-            encryptedMessage +=  (char)encryptedC;
+            encryptedMessage +=  encryptedC+"-";
         }
         return encryptedMessage;
     }
@@ -142,10 +145,11 @@ public class RSA {
     public String Decrypt(String message, long key, long mod) {
         String decryptedMessage = "";
 
-        for (int i = 0; i < message.length(); i++) {
-            long decryptedC = modularExponentiation((int)message.charAt(i), key, mod);
+        String[] encryptedMessage = message.split("-");
+        for (String s : encryptedMessage) {
+            long c = Long.parseLong(s);
+            long decryptedC = modularExponentiation(c, key, mod);
             decryptedMessage += (char) decryptedC;
-
         }
         return decryptedMessage;
 
@@ -164,9 +168,8 @@ public class RSA {
 //        System.out.println("Message: " + Message);
 //        System.out.println("Encrypted Message: " + encryptedMessage);
 //        System.out.println("Decrypted Message: " + decryptedMessage);
-        System.out.println(GCD.gcd(13,60));
-        System.out.println("x : "+GCD.x);
-        System.out.println("y : "+GCD.y);
+        RSA rsa = new RSA();
+        System.out.println(rsa.modularExponentiation(49,157,588983));
 
 
     }
